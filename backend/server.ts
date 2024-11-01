@@ -6,6 +6,9 @@ import cors from 'cors';
 import postRoutes from './routes/posts';
 import commentRoutes from './routes/comments';
 import gptRoutes from './routes/gpt';
+import getBlogData from './routes/getBlogData';
+import triggerSync from './routes/triggerSync';
+import fetchTweets from './routes/fetchTweets';
 
 dotenv.config();
 
@@ -20,6 +23,9 @@ mongoose.connect(process.env.MONGODB_URI!)
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/gpt', gptRoutes);
+app.use('/api/getBlogData', getBlogData);
+app.use('/api/triggerSync', triggerSync);
+app.use('/api/fetchTweets', fetchTweets);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

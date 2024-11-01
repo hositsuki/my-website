@@ -18,7 +18,7 @@ export default function GPTPage() {
             });
             const data = await res.json();
             setResponse(data.response);
-        } catch (error) {
+        } catch (_error) {
             setResponse("请求失败，请稍后再试。");
         } finally {
             setLoading(false);

@@ -1,5 +1,5 @@
 // middlewares/authMiddleware.ts
-import { Request, Response, NextFunction } from 'express';
+import {NextFunction, Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
 
 interface AuthRequest extends Request {
@@ -14,8 +14,7 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string };
-        req.user = decoded;
+        req.user = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string };
         next();
     } catch (error) {
         res.status(401).json({ message: 'Invalid token' });

@@ -21,6 +21,7 @@ export const createPost = async (req: AuthRequest, res: Response): Promise<void>
         });
         res.status(201).json(post);
     } catch (error) {
+        console.error("Error creating post:", error); // 添加日志打印错误详情
         res.status(500).json({ message: 'Server error' });
     }
 };

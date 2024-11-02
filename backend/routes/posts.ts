@@ -1,6 +1,8 @@
 // backend/routes/posts.ts
 import express from 'express';
 import Post from '../models/Post';
+import {authMiddleware} from "../middlewares/authMiddleware";
+import {createPost} from "../controllers/postController";
 
 const router = express.Router();
 
@@ -14,5 +16,5 @@ router.post('/', async (req, res) => {
     await newPost.save();
     res.json(newPost);
 });
-
+router.post('/create', authMiddleware, createPost);
 export default router;

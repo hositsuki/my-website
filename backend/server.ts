@@ -9,6 +9,7 @@ import gptRoutes from './routes/gpt';
 import getBlogData from './routes/getBlogData';
 import triggerSync from './routes/triggerSync';
 import fetchTweets from './routes/fetchTweets';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use('/api/gpt', gptRoutes);
 app.use('/api/getBlogData', getBlogData);
 app.use('/api/triggerSync', triggerSync);
 app.use('/api/fetchTweets', fetchTweets);
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

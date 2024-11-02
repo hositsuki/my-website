@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import postRoutes from './routes/posts';
 import commentRoutes from './routes/comments';
-import gptRoutes from './routes/gpt';
+import gptRoutes from './routes/gptGet';
 import getBlogData from './routes/getBlogData';
 import triggerSync from './routes/triggerSync';
 import fetchTweets from './routes/fetchTweets';

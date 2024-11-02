@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Navbar() {
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
 
@@ -17,13 +16,20 @@ export default function Navbar() {
     const handleLoginRedirect = () => {
         router.push('/login');
     };
+
     const handleRegisterRedirect = () => {
         router.push('/register');
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        router.push('/');
+    };
+
     const handleCreatePostRedirect = () => {
         router.push('/create-post');
     };
-
 
     return (
         <nav className="bg-gradient-to-r from-purple-200 via-purple-300 to-blue-400 shadow-md py-4">
@@ -44,23 +50,26 @@ export default function Navbar() {
                         博客
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     </Link>
-                    <Link href="/gpt" className="relative text-gray-800 hover:text-gray-600 font-medium text-lg transition-colors">
+                    <Link href="/chat" className="relative text-gray-800 hover:text-gray-600 font-medium text-lg transition-colors">
                         GPT 交互
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     </Link>
                     {/* Conditional Buttons for Login and Write Post */}
                     {isLoggedIn ? (
-                        <button onClick={handleCreatePostRedirect} className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors">
-                            写文章
-                        </button>
+                        <>
+                            <button onClick={handleCreatePostRedirect} className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors">
+                                写文章
+                            </button>
+                            <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors">
+                                注销
+                            </button>
+                        </>
                     ) : (
                         <div className="flex space-x-2">
-                            <button onClick={handleLoginRedirect}
-                                    className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition-colors">
+                            <button onClick={handleLoginRedirect} className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition-colors">
                                 登录
                             </button>
-                            <button onClick={handleRegisterRedirect}
-                                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition-colors">
+                            <button onClick={handleRegisterRedirect} className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition-colors">
                                 注册
                             </button>
                         </div>

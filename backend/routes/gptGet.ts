@@ -1,4 +1,4 @@
-// backend/routes/gpt.ts
+// backend/routes/gptGet.ts
 import express from 'express';
 import axios, { AxiosError } from 'axios';
 import dotenv from 'dotenv';

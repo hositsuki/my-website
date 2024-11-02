@@ -1,4 +1,4 @@
-// frontend/pages/gpt.tsx
+// frontend/pages/chat.tsx
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
